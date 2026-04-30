@@ -27,9 +27,10 @@ public class KafkaProducerConfig {
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         config.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
         // Reliability settings
-        config.put(ProducerConfig.ACKS_CONFIG, "all");                  //ACKS_CONFIG=all
-        config.put(ProducerConfig.RETRIES_CONFIG, 3);                   //These both makes sure no message is ever lost or duplicated even if the broker restarts mid-send
-        config.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);     //ENABLE_IDEMPOTENCE_CONFIG=true
+        config.put(ProducerConfig.ACKS_CONFIG, "all");
+        config.put(ProducerConfig.RETRIES_CONFIG, 3);
+        config.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
+        config.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 5_000);
         return new DefaultKafkaProducerFactory<>(config);
     }
 
